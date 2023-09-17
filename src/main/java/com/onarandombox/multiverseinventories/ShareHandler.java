@@ -33,11 +33,27 @@ public abstract class ShareHandler {
      * inventories/stats for a player and persisting the changes.
      */
     final void handleSharing() {
-        ShareHandlingEvent event = this.createEvent();
+        shareHandlerSequence.add(this);
+        if (shareHandlerSequence.size() != 1){
+            return;
+        }
+        while (shareHandlerSequence.size() != 0){
+            handleSharingOnce(shareHandlerSequence.pop());
+        }
+    }
+
+    private static final LinkedList<ShareHandler> shareHandlerSequence = new LinkedList<>();
+
+    /**
+     * Finalizes the transfer from one world to another.  This handles the switching
+     * inventories/stats for a player and persisting the changes.
+     */
+    private static final void handleSharingOnce(ShareHandler handler) {
+        ShareHandlingEvent event = handler.createEvent();
 
         Bukkit.getPluginManager().callEvent(event);
         if (!event.isCancelled()) {
-            this.completeSharing(event);
+            handler.completeSharing(event);
         }
     }
 

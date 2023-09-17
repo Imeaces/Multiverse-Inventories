@@ -65,7 +65,14 @@ public final class InventoriesConfig {
          */
         USE_GAME_MODE_PROFILES("settings.use_game_mode_profiles", false,
                 "# If this is set to true, players will have different inventories/stats for each game mode.",
-                "# Please note that old data migrated to the version that has this feature will have their data copied for both game modes.");
+                "# Please note that old data migrated to the version that has this feature will have their data copied for both game modes."),
+
+        /**
+         * 限制世界坐标的还原。这不是一段很好的代码，但是它解决了一个问题。
+         * 我想可能还需要另一个解决方案。
+         */
+        SHARE_SETTING_IGNORE_OUTER_WORLD_LOCATION_RESTORE("shares.last_location.ignore_outer_world", false,
+                "# 如果此项目被设置为 true，如果 last_location 中记录的世界不是共享条目相关的世界，将不会还原last_location");
 
         private String path;
         private Object def;

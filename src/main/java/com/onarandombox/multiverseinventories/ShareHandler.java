@@ -118,6 +118,9 @@ public abstract class ShareHandler {
         Logging.finer("=== %s complete for %s ===", event.getPlayer().getName(), event.getEventName());
     }
 
+    /**
+     * 一个数据类，存放 AffectedProfile
+     */
     public static class AffectedProfiles {
 
         private PersistingProfile alwaysWriteProfile;

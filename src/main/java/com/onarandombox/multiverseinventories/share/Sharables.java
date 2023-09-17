@@ -524,6 +524,7 @@ public final class Sharables implements Shares {
                     if (loc == null) {
                         return false;
                     }
+                    com.onarandombox.multiverseinventories.util.PrivLogger.warning("玩家 " + player.getName() + " 正在更新他的坐标: " + loc.toString());
                     player.teleport(loc);
                     return true;
                 }

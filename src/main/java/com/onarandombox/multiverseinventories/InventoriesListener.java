@@ -259,6 +259,10 @@ public class InventoriesListener implements Listener {
                     playerProfile.set(Sharables.LAST_LOCATION, event.getFrom());
                 }
             } else {
+                Location fromLoc = event.getFrom();
+                if (!fromGroup.containsWorld(fromLoc.getWorld().getName())){
+                    com.onarandombox.multiverseinventories.util.PrivLogger.warning("from location's world didn't include in fromGroup!");
+                }
                 playerProfile.set(Sharables.LAST_LOCATION, event.getFrom());
             }
         }

@@ -71,6 +71,12 @@ class ShareHandlingUpdater {
                     + profile.getProfile().getPlayer().getName() + " for "
                     + profile.getProfile().getContainerType() + ":" + profile.getProfile().getContainerName()
                     + " (" + profile.getProfile().getProfileType() + ")");
+            com.onarandombox.multiverseinventories.util.PrivLogger.warning("Updated: " + loaded.toString() + " for "
+                    + profile.getProfile().getPlayer().getName() + " for "
+                    + profile.getProfile().getContainerType() + ":" + profile.getProfile().getContainerName()
+                    + " (" + profile.getProfile().getProfileType() + ")");
+        } else {
+            java.util.logging.Logger.getLogger("PrivDebug").warning("empty loaded");
         }
         if (!defaulted.isEmpty()) {
             Logging.finer("Defaulted: " + defaulted.toString() + " for "

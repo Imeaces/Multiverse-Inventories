@@ -13,7 +13,6 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.Bukkit;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -525,9 +524,7 @@ public final class Sharables implements Shares {
                     if (loc == null) {
                         return false;
                     }
-                    Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("Multiverse-Inventories"), () -> {
-                        player.teleport(loc);
-                    });
+                    player.teleport(loc);
                     return true;
                 }
             }).serializer(new ProfileEntry(false, DataStrings.PLAYER_LAST_LOCATION), new LocationSerializer())

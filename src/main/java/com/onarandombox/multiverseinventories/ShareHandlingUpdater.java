@@ -81,6 +81,10 @@ class ShareHandlingUpdater {
     }
 
     private boolean isSharableUsed(Sharable<?> sharable) {
+        return isSharableUsed(inventories, profile, sharable);
+    }
+
+    public static boolean isSharableUsed(MultiverseInventories inventories, PersistingProfile profile, Sharable<?> sharable) {
         if (sharable.isOptional()) {
             if (!inventories.getMVIConfig().getOptionalShares().contains(sharable)) {
                 Logging.finest("Ignoring optional share: " + sharable.getNames()[0]);

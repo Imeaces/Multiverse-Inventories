@@ -34,15 +34,20 @@ public abstract class ShareHandler {
      */
     final void handleSharing() {
         shareHandlerSequence.add(this);
-        if (shareHandlerSequence.size() != 1){
+        if (handleingSharing){
             return;
         }
-        while (shareHandlerSequence.size() != 0){
-            handleSharingOnce(shareHandlerSequence.pop());
+        try {
+            while (shareHandlerSequence.size() != 0){
+                handleSharingOnce(shareHandlerSequence.pop());
+            }
+        } finally {
+            handleingSharing = false;
         }
     }
 
     private static final LinkedList<ShareHandler> shareHandlerSequence = new LinkedList<>();
+    private static boolean handleingSharing = false;
 
     /**
      * Finalizes the transfer from one world to another.  This handles the switching

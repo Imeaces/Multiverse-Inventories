@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -520,8 +521,21 @@ public final class Sharables implements Shares {
 
                 @Override
                 public boolean updatePlayer(Player player, PlayerProfile profile) {
+                    //我只是想让玩家不要跑到另一个世界
+                    String curWorldName = player.getLocation().getWorld().getName();
+                    Set<String> allowedNewWorlds = new HashSet<>();
+                    allowedNewWorlds.add(curWorldName);
+                    for (WorldGroup group: MultiverseInventories.getPlugin().getGroupManager().getGroupsForWorld(curWorldName)){
+                        if (group.isSharing(LAST_LOCATION)) {
+                            allowedNewWorlds.addAll(group.getWorlds());
+                        }
+                    }
+
                     Location loc = profile.get(LAST_LOCATION);
                     if (loc == null) {
+                        return false;
+                    }
+                    if (!allowedNewWorlds.contains(loc.getWorld().getName())){
                         return false;
                     }
                     player.teleport(loc);
